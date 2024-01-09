@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const userRoute = require('./routes/user.route');
 const connectDB = require('./db/db.connect');
+const notFound = require('./middleware/not-found');
+const errorHandlerMiddleware = require('./middleware/error-handler');
+
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
@@ -12,6 +15,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/users', userRoute);
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 // app.listen(port, console.log('Server at '+ port))
 const start = async () => {
