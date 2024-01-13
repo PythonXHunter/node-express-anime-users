@@ -1,33 +1,32 @@
-doctype html
-html(lang="en")
-  head
-    title Anime Directory
-    style.
-      table { font-family: arial, sans-serif; border-collapse: collapse; width: 100% }
-      td { border: 1px solid #dddddd; text-align: left; padding: 8px }
-      th { border: 1px solid #dddddd; text-align: left; padding: 8px }
-      tr:nth-child(even) { background-color: #dddddd }
-  body
-    h1 Anime Directory
+extends layout.pug
+
+block content
+
+  h1 Anime Directory
     table
-      tr
-        th Name
-        th Age
-        th Phone Number
-        th Gender
-        th Favorite Anime
-        th Top 3 Anime
-      each user in users
+      thead
         tr
-          td #{user.name}
-          td #{user.age}
-          td #{user.phone_number}
-          td #{user.gender}
-          td #{user.favorite_anime}
-          td
-            ul
-              li #{user.top_3_anime[0]}
-              li #{user.top_3_anime[1]}
-              li #{user.top_3_anime[2]}
-    footer
-      p that's all!
+          th Name
+          th Age
+          th Phone Number
+          th Gender
+          th Favorite Anime
+          th Top 3 Anime
+      tbody
+        each user in users
+          tr
+            td
+              - const url = user._id
+              a(href='/api/v1/users/' + user._id)
+                p #{user.name}
+                //- - const full = '/users/' + url
+                //- p #{full}
+            td #{user.age}
+            td #{user.phone_number}
+            td #{user.gender}
+            td #{user.favorite_anime}
+            td
+              ul
+                li #{user.top_3_anime[0]}
+                li #{user.top_3_anime[1]}
+                li #{user.top_3_anime[2]}

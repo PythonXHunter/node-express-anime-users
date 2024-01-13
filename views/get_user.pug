@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Hi World!
+  table
+    thead
+      each anime in user
+        tr
+          th #{anime.name}
+          th #{anime.age}
+  
