@@ -8,6 +8,9 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
 
+app.set('views', './views');
+app.set('view engine', 'pug');
+
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
